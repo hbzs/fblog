@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} | {{ site.title }}{% endblock %}
 
 
 
@@ -29,10 +29,38 @@
         </header>
         <div class="entry">{{ post.content }} </div>
     </article>
+    <div>
+        {% set rposts= get_posts('/',site.configs.rpost) %}
+            {% for anotherPost in rposts if not break_post %}
+                {% if post == anotherPost %}
+                    {% if pre_one_post %}
+                        <a href="/post/{{ pre_one_post.url_path }}" class="pre" style="float: left" title="新一篇">{{ pre_one_post.title }}</a>
+                    {% else %}
+                        <span class="pre unavailable" style="float: left" >已是最新一篇</span>
+                    {% endif %}
+                    {% if loop.last %}
+                        <span class="next unavailable" style="float: right" >已是最后一篇</span>
+                    {% else %}
+                            {% set last_one_post = true %}
+                    {% endif %}
+                {% else %}
+                    {% set pre_one_post = anotherPost %}
+                    {% if last_one_post %}
+                        <a href="/post/{{ anotherPost.url_path }}" class="next" style="float: right" title="旧一篇">{{ anotherPost.title }}</a>
+                        {% set last_one_post = false %}
+                        {% set break_post = true %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+    </div>
+    <br><br>
+    <div>
+            <blockquote style="border-left: 4px solid #eeeeee;margin: 0.8em 0 1.6em 0;padding-left: 1.0em;">版权声明：如无注明，均为原创<br>自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</blockquote>
+    </div>
     <div id="disqus_thread" class="comments"></div>
     {% if site.configs.duoshuo %}
         <!-- Duoshuo Comment BEGIN -->
-        <div class="comment-wrap"><div class="ds-thread"></div></div>            
+        <div class="comment-wrap"><div class="ds-thread"></div></div>
         <!-- Duoshuo Comment END -->
     {% else %}
     <div class="comment-wrap">{{ get_text_file('comment_js').raw_content }}</div>

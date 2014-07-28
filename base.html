@@ -28,22 +28,29 @@
             <nav class="main-nav">
                 <ul class="menu">
                     <li>
-                        <a href="/" {% block nav_index%} {% endblock %}>Home</a>
+                        <a href="/" {% block nav_index%} {% endblock %}><i class="icon-home"></i>首页</a>
                     </li>
                     <li>
-                        <a href="/archive" {% block nav_archive %} {% endblock %}>Archive</a>
+                        <a href="/archive" {% block nav_archive %} {% endblock %}><i class="icon-archive"></i>归档</a>
                     </li>
                     {%  if has('images') %}
                     <li>
-                        <a href="/folder/" {% block nav_folder %} {% endblock %}>Photos</a>
+                        <a href="/folder/" {% block nav_folder %} {% endblock %}><i class="icon-picture"></i>照片</a>
                     </li>
                     {% endif %}
+                    <!-- <li>
+                        <a href="/pages/links"  {% if request.path == '/pages/links' %}class="current"{% endif %}>链接</a>
+                    </li>
                     <li>
-                        <a href="/pages/links"  {% if request.path == '/pages/links' %}class="current"{% endif %}>Links</a>
+                        <a href="/pages/about"  {% if request.path == '/pages/about' %}class="current"{% endif %}>关于</a>
+                    </li> -->
+
+                    <li>
+                        <a href="/feed" {% block nav_feed %} {% endblock %}><i class="icon-rss"></i>订阅</a>
                     </li>
 
                     <li>
-                        <a href="/pages/about"  {% if request.path == '/pages/about' %}class="current"{% endif %}>About</a>
+                        <a href="/post/about"  {% if request.path == '/post/about' %}class="current"{% endif %}><i class="icon-user"></i>关于</a>
                     </li>
                 </ul>
             </nav>

@@ -1,12 +1,7 @@
 <div class="sider">
-    {% if site.configs.weibo %}
-    <aside>
-        <iframe width="100%" height="75" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=0&isFans=0&{{ site.configs.weibo }}&dpc=1"></iframe>
-    </aside>
-    {% endif %}
     {% if site.configs.rpost %}
     <aside>
-        <h3><i class="icon-magic"></i> Recent Article</h3>
+        <h3><i class="icon-magic"></i>黑白新诌</h3>
         <ul>
         {% set rposts= get_posts('/',site.configs.rpost) %}
             {% for post in rposts %}
@@ -20,17 +15,40 @@
     {% if site.configs.duoshuo %}
     <aside>
         <h3> <i class="icon-comments"></i>
-            Recent Comments
+            大家说
         </h3>
         <ul class="ds-recent-comments" data-show-title="0" data-show-time="0" data-show-avatars="0"></ul>
     </aside>
     {% endif %}
     <aside>
-        <h3>Tags</h3>
+        <h3><i class="icon-tags"></i>标签贴</h3>
         <div>
             {% for tag_name, tag_count in site.tags %}
             <a href="/tags/{{tag_name}}">{{ tag_name }}</a>
             {% endfor %}
+        </div>
+    </aside>
+    {% if site.configs.weibo %}
+        <h3><i class="icon-weibo"></i>我的微博</h3>
+        <div>
+            <a href="http://t.qq.com/heibaizhishang" target="_blank"><img src="http://v.t.qq.com/sign/heibaizhishang/86a8a4488cc25d2280865f588038cdcb116b1373/1.jpg" /></a>
+            <a href="http://weibo.com/u/1750508220?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/1750508220/d71718ca/1.png"/></a>
+            <a class="twitter-timeline" href="https://twitter.com/hourunj" data-widget-id="477241474463985664">@hourunj 的推文</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    {% endif %}
+    </aside>
+    <aside>
+        <h3><i class="icon-envelope"></i>我的邮箱</h3>
+        <div>
+            <a href="mailto:hrjlxh@126.com">hrjlxh@126.com</a>
+        </div>
+    </aside>
+    <aside>
+        <h3><i class="icon-github"></i>我的开源</h3>
+        <div>
+            <a href="http://git.oschina.net/hbzs">http://git.oschina.net/hbzs</a><br>
+            <a href="https://github.com/hbzs">https://github.com/hbzs</a>
         </div>
     </aside>
 </div>
